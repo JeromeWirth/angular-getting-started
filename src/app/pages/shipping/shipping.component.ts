@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
-import { CartService } from "../cart.service";
+import { CartService } from "src/app/shared/services/cart.service";
 
 @Component({
   selector: "app-shipping",
@@ -8,11 +8,11 @@ import { CartService } from "../cart.service";
   styleUrls: ["./shipping.component.css"],
 })
 export class ShippingComponent {
-  shippingCosts!: Observable<{ type: string; price: number }[]>;
+  shippingCosts$!: Observable<{ type: string; price: number }[]>;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.shippingCosts = this.cartService.getShippingPrices();
+    this.shippingCosts$ = this.cartService.getShippingPrices();
   }
 }
